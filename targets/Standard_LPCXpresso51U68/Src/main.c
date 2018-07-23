@@ -40,10 +40,13 @@
 
 #include "sys_init.h"
 #include "usart.h"
-
+UINT32 g_TskHandle;
 
 void main_task(VOID)
 {
+    BOARD_BootClockFROHF48M();
+    BOARD_InitPins();
+    LOS_UartInit();
     hieth_hw_init();
     net_init();
 }
@@ -71,8 +74,7 @@ int main(void)
 {
     UINT32 uwRet = LOS_OK;
 
-    BOARD_BootClockFROHF48M();
-    LOS_UartInit();
+
 
     uwRet = LOS_KernelInit();
     if (uwRet != LOS_OK)

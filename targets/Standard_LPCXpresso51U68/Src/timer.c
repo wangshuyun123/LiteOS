@@ -32,59 +32,13 @@
  * applicable export control laws and regulations.
  *---------------------------------------------------------------------------*/
 
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __SYS_H_
-#define __SYS_H_
+#include "timer.h"
 
-/* Includes ------------------------------------------------------------------*/
 
-/* Includes LiteOS------------------------------------------------------------------*/
-
-#include "los_base.h"
-#include "los_config.h"
-#include "los_sys.h"
-#include "los_typedef.h"
-#include "los_task.ph"
-
-#include "stdlib.h"
-#include "string.h"
-#include <stdio.h>
-#include "LPC51U68.h"
-#include "usart.h"
-//#include "dwt.h"
-#include "lwip/netif.h"
-#if defined ( __CC_ARM )  /* MDK ARM Compiler */
-#include "lwip/sio.h"
-#endif /* MDK ARM Compiler */
-#include "lwip/opt.h"
-#include "lwip/mem.h"
-#include "lwip/memp.h"
-#include "netif/etharp.h"
-#include "lwip/sockets.h"
-#include "lwip/tcpip.h"
-#include "lwip/init.h"
-#include "lwip/dhcp.h"
-#include "lwip/netif.h"
-#include "lwip/ip_addr.h"
-#include "lwip/timeouts.h"
-#include "ethernetif.h"
-
-//#include "net.h"
-//#include "ssl.h"
-//#include "eth.h"
-
-#ifdef __cplusplus
- extern "C" {
-#endif
-void net_init(void);
-uint32_t HAL_GetTick(void);
-void _Error_Handler(char *, int);
-void hieth_hw_init(void);
-
-#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
-#ifdef __cplusplus
+void delay10ms(__IO     uint32_t nTime)
+{
+    uint32_t tickstart = 0;
+    tickstart = (uint32_t)LOS_TickCountGet();
+    while(((uint32_t)LOS_TickCountGet() - tickstart) < 10);
+        return;
 }
-#endif
-
-#endif /* __SYS_H_ */
-

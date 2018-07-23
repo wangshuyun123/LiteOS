@@ -48,7 +48,7 @@ void LOS_UartInit(void)
     /* reset FLEXCOMM for USART */
     RESET_PeripheralReset(kFC0_RST_SHIFT_RSTn);
     
-    BOARD_InitPins();
+//    BOARD_InitPins();
     /*
      * config.baudRate_Bps = 115200U;
      * config.parityMode = kUSART_ParityDisabled;
