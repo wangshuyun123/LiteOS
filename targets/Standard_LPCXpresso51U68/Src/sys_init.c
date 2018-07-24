@@ -45,10 +45,12 @@ uint8_t IP_ADDRESS[4];
 uint8_t NETMASK_ADDRESS[4];
 uint8_t GATEWAY_ADDRESS[4];
 
+int rng_generate_number(void);
+
 static void lwip_impl_register(void)
 {
     STlwIPFuncSsp stlwIPSspCbk = {0};
-    stlwIPSspCbk.pfRand = hal_rng_generate_number;
+    stlwIPSspCbk.pfRand = rng_generate_number;
     lwIPRegSspCbk(&stlwIPSspCbk);
 }
 
@@ -132,7 +134,13 @@ void atiny_usleep(unsigned long usec)
 {
 //    delayus((uint32_t)usec);
 }
-
+int rng_generate_number(void)
+{
+	uint32_t random_number;
+	srand(LOS_TickCountGet()); 
+	random_number = rand();
+	return random_number;
+}
 int atiny_random(void* output, size_t len)
 {
     size_t i;

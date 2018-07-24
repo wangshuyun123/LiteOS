@@ -335,7 +335,7 @@
               <MiscControls>--diag_suppress=66,1</MiscControls>
               <Define>DEBUG, CPU_LPC51U68JBD64, FREEDOM, LOS_KERNEL_DEBUG_OUT,ARM_MATH_CM0PLUS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\..\components\cmsis;..\..\..\components\cmsis\1.0;..\..\..\components\cmsis\2.0;..\..\..\kernel\base\include;..\..\..\kernel\include;..\..\..\kernel\extended\include;..\OS_CONFIG;..\..\..\arch\arm\arm-m\include;..\..\..\examples\include;..\Drivers\LPC51U68;..\Utilities;..\Utilities\io;..\Utilities\log;..\Utilities\str</IncludePath>
+              <IncludePath>..\Inc;..\..\..\components\cmsis;..\..\..\components\cmsis\1.0;..\..\..\components\cmsis\2.0;..\..\..\kernel\base\include;..\..\..\kernel\include;..\..\..\kernel\extended\include;..\OS_CONFIG;..\..\..\arch\arm\arm-m\include;..\..\..\examples\include;..\Drivers\LPC51U68;..\Utilities;..\Utilities\io;..\Utilities\log;..\Utilities\str;..\..\..\components\net\lwip-2.0.3\src\include;..\..\..\components\net\lwip_port;..\..\..\components\net\lwip_port\OS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -414,6 +414,21 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\sys_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>eth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\eth.c</FilePath>
             </File>
           </Files>
         </Group>
