@@ -53,26 +53,6 @@
 #include "gd32f4xx_trng.h"
 #include "usart.h"
 #include "dwt.h"
-#include "lwip/netif.h"
-#if defined ( __CC_ARM )  /* MDK ARM Compiler */
-#include "lwip/sio.h"
-#endif /* MDK ARM Compiler */
-#include "lwip/opt.h"
-#include "lwip/mem.h"
-#include "lwip/memp.h"
-#include "netif/etharp.h"
-#include "lwip/sockets.h"
-#include "lwip/tcpip.h"
-#include "lwip/init.h"
-#include "lwip/dhcp.h"
-#include "lwip/netif.h"
-#include "lwip/ip_addr.h"
-#include "lwip/timeouts.h"
-#include "ethernetif.h"
-
-#include "net.h"
-#include "ssl.h"
-#include "eth.h"
 
 #ifdef __cplusplus
  extern "C" {

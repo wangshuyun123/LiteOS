@@ -41,7 +41,8 @@
 
 #include "los_typedef.h"
 #include "gd32f4xx.h"
-
+#include <stdio.h>
+#include <string.h>
 
 #ifdef __cplusplus
 #if __cplusplus

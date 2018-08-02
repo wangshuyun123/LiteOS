@@ -332,10 +332,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER, USE_MBED_TLS,MBEDTLS_CONFIG_FILE=&lt;los_mbedtls_config.h&gt;,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,NDEBUG,WITH_DTLS,WITH_LWIP</Define>
+              <MiscControls>--diag_suppress=1,186</MiscControls>
+              <Define>USE_HAL_DRIVER,NDEBUG</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\..\components\cmsis;..\..\..\components\cmsis\1.0;..\..\..\components\cmsis\2.0;..\..\..\kernel\base\include;..\..\..\kernel\include;..\..\..\kernel\extended\include;..\OS_CONFIG;..\..\..\arch\arm\arm-m\include;..\..\..\arch\arm\arm-m\cortex-m4;..\..\..\examples\include;..\..\..\test\include;..\Drivers\GD32F4xx_standard_peripheral\Include;..\..\..\components\net\lwip-2.0.3\src\include;..\..\..\components\net\lwip_port;..\..\..\components\net\lwip_port\OS;..\..\..\components\connectivity\lwm2m\core\er-coap-13;..\..\..\components\connectivity\lwm2m\core;..\..\..\components\connectivity\lwm2m\examples\shared;..\..\..\components\connectivity\lwm2m\examples\client;..\..\..\components\security\mbedtls\mbedtls_port;..\..\..\components\security\mbedtls\mbedtls-2.6.0\include;..\..\..\components\security\mbedtls\mbedtls-2.6.0\include\mbedtls;..\..\..\components\connectivity\agent_tiny\comm\include;..\..\..\components\connectivity\agent_tiny\lwm2m_client;..\..\..\components\connectivity\agent_tiny\examples;..\..\..\components\connectivity\agent_tiny\osadapter;..\Hardware\Inc;..\..\..\components\connectivity\at_frame;..\..\..\components\fota\fota_package_storage_device;..\..\..\components\fota\ota;..\..\..\components\fota\utility;..\..\..\components\connectivity\agent_tiny\firmware_update;..\..\..\components\connectivity\agent_tiny\lwm2m_client\fota;..\..\..\arch\arm\common\cmsis;..\..\..\components\net\lwip-2.0.3\src\include\lwip</IncludePath>
+              <IncludePath>..\Inc;..\..\..\components\cmsis;..\..\..\components\cmsis\1.0;..\..\..\components\cmsis\2.0;..\..\..\kernel\base\include;..\..\..\kernel\include;..\..\..\kernel\extended\include;..\OS_CONFIG;..\..\..\arch\arm\arm-m\include;..\..\..\arch\arm\arm-m\cortex-m4;..\..\..\examples\include;..\Drivers\GD32F4xx_standard_peripheral\Include;..\Hardware\Inc;..\..\..\arch\arm\common\cmsis</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -395,19 +395,9 @@
               <FilePath>..\Src\dwt.c</FilePath>
             </File>
             <File>
-              <FileName>eth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\eth.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\sys_init.c</FilePath>
             </File>
             <File>
               <FileName>system_gd32f4xx.c</FileName>
@@ -418,6 +408,16 @@
               <FileName>gd32f450i_eval.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\gd32f450i_eval.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\sys_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -490,16 +490,6 @@
               <FilePath>..\..\..\kernel\base\mem\bestfit_little\los_heap.c</FilePath>
             </File>
             <File>
-              <FileName>los_membox.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\kernel\base\mem\bestfit_little\los_membox.c</FilePath>
-            </File>
-            <File>
-              <FileName>los_memcheck.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\kernel\base\mem\bestfit_little\los_memcheck.c</FilePath>
-            </File>
-            <File>
               <FileName>los_memory.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\kernel\base\mem\bestfit_little\los_memory.c</FilePath>
@@ -534,16 +524,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\kernel\los_init.c</FilePath>
             </File>
+            <File>
+              <FileName>los_membox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\kernel\base\mem\membox\los_membox.c</FilePath>
+            </File>
+            <File>
+              <FileName>los_memcheck.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\kernel\base\mem\common\los_memcheck.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>liteos/arch</GroupName>
           <Files>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\usart.c</FilePath>
-            </File>
             <File>
               <FileName>los_hw.c</FileName>
               <FileType>1</FileType>
@@ -694,860 +689,82 @@
               <FileType>1</FileType>
               <FilePath>..\Drivers\GD32F4xx_standard_peripheral\Source\gd32f4xx_spi.c</FilePath>
             </File>
+            <File>
+              <FileName>gd32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\GD32F4xx_standard_peripheral\Source\gd32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>lwip</GroupName>
+          <GroupName>examples</GroupName>
           <Files>
             <File>
-              <FileName>api_lib.c</FileName>
+              <FileName>los_api_dynamic_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\api_lib.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_dynamic_mem.c</FilePath>
             </File>
             <File>
-              <FileName>api_msg.c</FileName>
+              <FileName>los_api_event.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\api_msg.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_event.c</FilePath>
             </File>
             <File>
-              <FileName>err.c</FileName>
+              <FileName>los_api_interrupt.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\err.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_interrupt.c</FilePath>
             </File>
             <File>
-              <FileName>netbuf.c</FileName>
+              <FileName>los_api_list.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\netbuf.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_list.c</FilePath>
             </File>
             <File>
-              <FileName>netdb.c</FileName>
+              <FileName>los_api_msgqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\netdb.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_msgqueue.c</FilePath>
             </File>
             <File>
-              <FileName>netifapi.c</FileName>
+              <FileName>los_api_mutex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\netifapi.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_mutex.c</FilePath>
             </File>
             <File>
-              <FileName>sockets.c</FileName>
+              <FileName>los_api_sem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\sockets.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_sem.c</FilePath>
             </File>
             <File>
-              <FileName>tcpip.c</FileName>
+              <FileName>los_api_static_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\api\tcpip.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_static_mem.c</FilePath>
             </File>
             <File>
-              <FileName>autoip.c</FileName>
+              <FileName>los_api_systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\autoip.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_systick.c</FilePath>
             </File>
             <File>
-              <FileName>dhcp.c</FileName>
+              <FileName>los_api_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\dhcp.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_task.c</FilePath>
             </File>
             <File>
-              <FileName>etharp.c</FileName>
+              <FileName>los_api_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\etharp.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_api_timer.c</FilePath>
             </File>
             <File>
-              <FileName>icmp.c</FileName>
+              <FileName>los_demo_entry.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\icmp.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_demo_entry.c</FilePath>
             </File>
             <File>
-              <FileName>igmp.c</FileName>
+              <FileName>los_inspect_entry.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\igmp.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\ip4.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip4_addr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\ip4_addr.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip4_frag.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ipv4\ip4_frag.c</FilePath>
-            </File>
-            <File>
-              <FileName>def.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\def.c</FilePath>
-            </File>
-            <File>
-              <FileName>dns.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\dns.c</FilePath>
-            </File>
-            <File>
-              <FileName>inet_chksum.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\inet_chksum.c</FilePath>
-            </File>
-            <File>
-              <FileName>init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\init.c</FilePath>
-            </File>
-            <File>
-              <FileName>ip.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\ip.c</FilePath>
-            </File>
-            <File>
-              <FileName>mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\mem.c</FilePath>
-            </File>
-            <File>
-              <FileName>memp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\memp.c</FilePath>
-            </File>
-            <File>
-              <FileName>netif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\netif.c</FilePath>
-            </File>
-            <File>
-              <FileName>pbuf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\pbuf.c</FilePath>
-            </File>
-            <File>
-              <FileName>raw.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\raw.c</FilePath>
-            </File>
-            <File>
-              <FileName>stats.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\stats.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\sys.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\tcp.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcp_in.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\tcp_in.c</FilePath>
-            </File>
-            <File>
-              <FileName>tcp_out.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\tcp_out.c</FilePath>
-            </File>
-            <File>
-              <FileName>timeouts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\timeouts.c</FilePath>
-            </File>
-            <File>
-              <FileName>udp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\core\udp.c</FilePath>
-            </File>
-            <File>
-              <FileName>ethernet.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip-2.0.3\src\netif\ethernet.c</FilePath>
+              <FilePath>..\..\..\examples\api\los_inspect_entry.c</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>lwip_port</GroupName>
-          <Files>
-            <File>
-              <FileName>ethernetif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip_port\OS\ethernetif.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys_arch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\lwip_port\OS\sys_arch.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>mbedtls</GroupName>
-          <Files>
-            <File>
-              <FileName>aes.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\aes.c</FilePath>
-            </File>
-            <File>
-              <FileName>aesni.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\aesni.c</FilePath>
-            </File>
-            <File>
-              <FileName>arc4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\arc4.c</FilePath>
-            </File>
-            <File>
-              <FileName>asn1parse.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\asn1parse.c</FilePath>
-            </File>
-            <File>
-              <FileName>asn1write.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\asn1write.c</FilePath>
-            </File>
-            <File>
-              <FileName>base64.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\base64.c</FilePath>
-            </File>
-            <File>
-              <FileName>bignum.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\bignum.c</FilePath>
-            </File>
-            <File>
-              <FileName>blowfish.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\blowfish.c</FilePath>
-            </File>
-            <File>
-              <FileName>camellia.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\camellia.c</FilePath>
-            </File>
-            <File>
-              <FileName>ccm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ccm.c</FilePath>
-            </File>
-            <File>
-              <FileName>certs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\certs.c</FilePath>
-            </File>
-            <File>
-              <FileName>cipher.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\cipher.c</FilePath>
-            </File>
-            <File>
-              <FileName>cipher_wrap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\cipher_wrap.c</FilePath>
-            </File>
-            <File>
-              <FileName>cmac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\cmac.c</FilePath>
-            </File>
-            <File>
-              <FileName>ctr_drbg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ctr_drbg.c</FilePath>
-            </File>
-            <File>
-              <FileName>debug.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\debug.c</FilePath>
-            </File>
-            <File>
-              <FileName>des.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\des.c</FilePath>
-            </File>
-            <File>
-              <FileName>dhm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\dhm.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecdh.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ecdh.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecdsa.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ecdsa.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecjpake.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ecjpake.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ecp.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecp_curves.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ecp_curves.c</FilePath>
-            </File>
-            <File>
-              <FileName>entropy.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\entropy.c</FilePath>
-            </File>
-            <File>
-              <FileName>entropy_poll.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\entropy_poll.c</FilePath>
-            </File>
-            <File>
-              <FileName>error.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\error.c</FilePath>
-            </File>
-            <File>
-              <FileName>gcm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\gcm.c</FilePath>
-            </File>
-            <File>
-              <FileName>havege.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\havege.c</FilePath>
-            </File>
-            <File>
-              <FileName>hmac_drbg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\hmac_drbg.c</FilePath>
-            </File>
-            <File>
-              <FileName>md.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\md.c</FilePath>
-            </File>
-            <File>
-              <FileName>md_wrap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\md_wrap.c</FilePath>
-            </File>
-            <File>
-              <FileName>md2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\md2.c</FilePath>
-            </File>
-            <File>
-              <FileName>md4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\md4.c</FilePath>
-            </File>
-            <File>
-              <FileName>md5.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\md5.c</FilePath>
-            </File>
-            <File>
-              <FileName>memory_buffer_alloc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\memory_buffer_alloc.c</FilePath>
-            </File>
-            <File>
-              <FileName>net_sockets.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\net_sockets.c</FilePath>
-            </File>
-            <File>
-              <FileName>oid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\oid.c</FilePath>
-            </File>
-            <File>
-              <FileName>padlock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\padlock.c</FilePath>
-            </File>
-            <File>
-              <FileName>pem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pem.c</FilePath>
-            </File>
-            <File>
-              <FileName>pk.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pk.c</FilePath>
-            </File>
-            <File>
-              <FileName>pk_wrap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pk_wrap.c</FilePath>
-            </File>
-            <File>
-              <FileName>pkcs5.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pkcs5.c</FilePath>
-            </File>
-            <File>
-              <FileName>pkcs11.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pkcs11.c</FilePath>
-            </File>
-            <File>
-              <FileName>pkcs12.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pkcs12.c</FilePath>
-            </File>
-            <File>
-              <FileName>pkparse.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pkparse.c</FilePath>
-            </File>
-            <File>
-              <FileName>pkwrite.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\pkwrite.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\platform.c</FilePath>
-            </File>
-            <File>
-              <FileName>ripemd160.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ripemd160.c</FilePath>
-            </File>
-            <File>
-              <FileName>rsa.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\rsa.c</FilePath>
-            </File>
-            <File>
-              <FileName>sha1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\sha1.c</FilePath>
-            </File>
-            <File>
-              <FileName>sha256.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\sha256.c</FilePath>
-            </File>
-            <File>
-              <FileName>sha512.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\sha512.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_cache.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_cache.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_ciphersuites.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_ciphersuites.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_cli.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_cli.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_cookie.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_cookie.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_srv.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_srv.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_ticket.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_ticket.c</FilePath>
-            </File>
-            <File>
-              <FileName>ssl_tls.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\ssl_tls.c</FilePath>
-            </File>
-            <File>
-              <FileName>threading.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\threading.c</FilePath>
-            </File>
-            <File>
-              <FileName>timing.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\timing.c</FilePath>
-            </File>
-            <File>
-              <FileName>version.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\version.c</FilePath>
-            </File>
-            <File>
-              <FileName>version_features.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\version_features.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509_create.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509_create.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509_crl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509_crl.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509_crt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509_crt.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509_csr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509_csr.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509write_crt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509write_crt.c</FilePath>
-            </File>
-            <File>
-              <FileName>x509write_csr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\x509write_csr.c</FilePath>
-            </File>
-            <File>
-              <FileName>xtea.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls-2.6.0\library\xtea.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>mbedtls/port</GroupName>
-          <Files>
-            <File>
-              <FileName>dtls_interface.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls_port\dtls_interface.c</FilePath>
-            </File>
-            <File>
-              <FileName>entropy_hardware_poll.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls_port\entropy_hardware_poll.c</FilePath>
-            </File>
-            <File>
-              <FileName>net_sockets_alt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls_port\net_sockets_alt.c</FilePath>
-            </File>
-            <File>
-              <FileName>timing_alt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\security\mbedtls\mbedtls_port\timing_alt.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>er-coap</GroupName>
-          <Files>
-            <File>
-              <FileName>er-coap-13.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\er-coap-13\er-coap-13.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>lwm2m</GroupName>
-          <Files>
-            <File>
-              <FileName>block1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\block1.c</FilePath>
-            </File>
-            <File>
-              <FileName>bootstrap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\bootstrap.c</FilePath>
-            </File>
-            <File>
-              <FileName>data.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\data.c</FilePath>
-            </File>
-            <File>
-              <FileName>discover.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\discover.c</FilePath>
-            </File>
-            <File>
-              <FileName>json.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\json.c</FilePath>
-            </File>
-            <File>
-              <FileName>liblwm2m.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\liblwm2m.c</FilePath>
-            </File>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>management.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\management.c</FilePath>
-            </File>
-            <File>
-              <FileName>objects.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\objects.c</FilePath>
-            </File>
-            <File>
-              <FileName>observe.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\observe.c</FilePath>
-            </File>
-            <File>
-              <FileName>packet.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\packet.c</FilePath>
-            </File>
-            <File>
-              <FileName>registration.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\registration.c</FilePath>
-            </File>
-            <File>
-              <FileName>tlv.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\tlv.c</FilePath>
-            </File>
-            <File>
-              <FileName>transaction.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\transaction.c</FilePath>
-            </File>
-            <File>
-              <FileName>uri.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\uri.c</FilePath>
-            </File>
-            <File>
-              <FileName>utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\lwm2m\core\utils.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>os_adapter</GroupName>
-          <Files>
-            <File>
-              <FileName>atiny_adapter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\osadapter\atiny_adapter.c</FilePath>
-            </File>
-            <File>
-              <FileName>atiny_socket.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\osadapter\atiny_socket.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>atiny_tiny</GroupName>
-          <Files>
-            <File>
-              <FileName>agenttiny.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\agenttiny.c</FilePath>
-            </File>
-            <File>
-              <FileName>atiny_log.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\atiny_log.c</FilePath>
-            </File>
-            <File>
-              <FileName>atiny_rpt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\atiny_rpt.c</FilePath>
-            </File>
-            <File>
-              <FileName>commandline.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\commandline.c</FilePath>
-            </File>
-            <File>
-              <FileName>connection.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\connection.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_access_control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_access_control.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_binary_app_data_container.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_binary_app_data_container.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_connectivity_moni.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_connectivity_moni.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_connectivity_stat.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_connectivity_stat.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_device.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_firmware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_firmware.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_location.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_location.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_security.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_security.c</FilePath>
-            </File>
-            <File>
-              <FileName>object_server.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\object_server.c</FilePath>
-            </File>
-            <File>
-              <FileName>platform_adapter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\lwm2m_client\platform_adapter.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>agent_demo</GroupName>
-          <Files>
-            <File>
-              <FileName>agent_tiny_cmd_ioctl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\examples\agent_tiny_cmd_ioctl.c</FilePath>
-            </File>
-            <File>
-              <FileName>agent_tiny_demo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\agent_tiny\examples\agent_tiny_demo.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>at_framework</GroupName>
-          <Files>
-            <File>
-              <FileName>at_api_interface.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\at_frame\at_api_interface.c</FilePath>
-            </File>
-            <File>
-              <FileName>atadapter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\at_frame\atadapter.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>nb_iot_api</GroupName>
-          <Files>
-            <File>
-              <FileName>los_nb_api.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\connectivity\nb_iot\los_nb_api.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>fota</GroupName>
-          <Files>
-            <File>
-              <FileName>ota.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\ota\ota.c</FilePath>
-            </File>
-            <File>
-              <FileName>ota_default.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\ota\ota_default.c</FilePath>
-            </File>
-            <File>
-              <FileName>fota_firmware_writer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_firmware_writer.c</FilePath>
-            </File>
-            <File>
-              <FileName>fota_package_checksum.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_package_checksum.c</FilePath>
-            </File>
-            <File>
-              <FileName>fota_package_head.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_package_head.c</FilePath>
-            </File>
-            <File>
-              <FileName>fota_package_storage_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\fota_package_storage_device\fota_package_storage_device.c</FilePath>
-            </File>
-            <File>
-              <FileName>ota_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\utility\ota_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>ota_sha256.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fota\utility\ota_sha256.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>::Network</GroupName>
         </Group>
       </Groups>
     </Target>
@@ -1555,20 +772,7 @@
 
   <RTE>
     <apis/>
-    <components>
-      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Interface" Csub="ETH" Cvendor="Keil" Cversion="7.4.0" condition="Network Driver ETH" maxInstances="1">
-        <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.4.0"/>
-        <targetInfos>
-          <targetInfo name="HuaweiLiteOS"/>
-        </targetInfos>
-      </component>
-      <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Socket" Csub="UDP" Cvendor="Keil" Cversion="7.4.0" condition="Network Interface">
-        <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.4.0"/>
-        <targetInfos>
-          <targetInfo name="HuaweiLiteOS"/>
-        </targetInfos>
-      </component>
-    </components>
+    <components/>
     <files>
       <file attr="config" category="source" name="Device\Firmware\Peripherals\src\gd32f4xx_sdio.c" version="1.0.1">
         <instance index="0" removed="1">RTE\Device\GD32F450IK\gd32f4xx_sdio.c</instance>
@@ -1601,20 +805,16 @@
         <targetInfos/>
       </file>
       <file attr="config" category="source" name="Network\Config\Net_Config_ETH.h" version="7.0.0">
-        <instance index="0">RTE\Network\Net_Config_ETH_0.h</instance>
+        <instance index="0" removed="1">RTE\Network\Net_Config_ETH_0.h</instance>
         <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Interface" Csub="ETH" Cvendor="Keil" Cversion="7.4.0" condition="Network Driver ETH" maxInstances="1"/>
         <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.4.0"/>
-        <targetInfos>
-          <targetInfo name="HuaweiLiteOS"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
       <file attr="config" category="source" name="Network\Config\Net_Config_UDP.h" version="5.0.0">
-        <instance index="0">RTE\Network\Net_Config_UDP.h</instance>
+        <instance index="0" removed="1">RTE\Network\Net_Config_UDP.h</instance>
         <component Cbundle="MDK-Pro" Cclass="Network" Cgroup="Socket" Csub="UDP" Cvendor="Keil" Cversion="7.4.0" condition="Network Interface"/>
         <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.4.0"/>
-        <targetInfos>
-          <targetInfo name="HuaweiLiteOS"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
     </files>
   </RTE>

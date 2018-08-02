@@ -94,7 +94,11 @@ int fputc(int ch, FILE *f)
 #elif defined ( __GNUC__ )  /* GCC: printf will call _write to print */
 __attribute__((used)) int _write(int fd, char *ptr, int len)
 {
-    (void)HAL_UART_Transmit(&USART1, (uint8_t *)ptr, len, 0xFFFF);
+    int i = 0;
+    for(i < len && (ptr+i) != NULL)
+    {
+        usart_data_transmit(USART1, *(ptr+i));
+    }
     return len;
 }
 #endif
