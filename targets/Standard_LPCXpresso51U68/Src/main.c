@@ -42,7 +42,7 @@
 #include "usart.h"
 UINT32 g_TskHandle;
 
-void main_task(VOID)
+VOID main_task(VOID)
 {
     BOARD_BootClockFROHF48M();
     BOARD_InitPins();
@@ -50,7 +50,12 @@ void main_task(VOID)
     hieth_hw_init();
     net_init();
 }
-
+VOID main_task(VOID)
+{
+    hieth_hw_init();
+    net_init();
+    agent_tiny_entry();
+}
 UINT32 creat_main_task()
 {
     UINT32 uwRet = LOS_OK;
@@ -70,7 +75,7 @@ UINT32 creat_main_task()
 }
 
 
-int main(void)
+UINT32 main(void)
 {
     UINT32 uwRet = LOS_OK;
 
