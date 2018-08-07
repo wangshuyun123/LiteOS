@@ -35,6 +35,7 @@
 #include "sys_init.h"
 #include <stdlib.h>
 #include <time.h>
+#include "eth.h"
 
 
 struct netif gnetif;
@@ -120,12 +121,6 @@ void _Error_Handler(char *file, int line)
     /* USER CODE END Error_Handler_Debug */
 }
 
-
-void hieth_hw_init(void)
-{
-    extern void ETH_IRQHandler(void);
-    (void)LOS_HwiCreate(ETH_IRQn, 1,0,ETH_IRQHandler,0);
-}
 
 /**
  * atiny_adapter user interface 

@@ -47,14 +47,8 @@ VOID main_task(VOID)
     BOARD_BootClockFROHF48M();
     BOARD_InitPins();
     LOS_UartInit();
-    hieth_hw_init();
     net_init();
-}
-VOID main_task(VOID)
-{
-    hieth_hw_init();
-    net_init();
-    agent_tiny_entry();
+//    agent_tiny_entry();
 }
 UINT32 creat_main_task()
 {
@@ -75,11 +69,9 @@ UINT32 creat_main_task()
 }
 
 
-UINT32 main(void)
+int main(void)
 {
     UINT32 uwRet = LOS_OK;
-
-
 
     uwRet = LOS_KernelInit();
     if (uwRet != LOS_OK)

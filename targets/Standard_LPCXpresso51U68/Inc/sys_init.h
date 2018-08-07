@@ -79,7 +79,6 @@
 void net_init(void);
 uint32_t HAL_GetTick(void);
 void _Error_Handler(char *, int);
-void hieth_hw_init(void);
 
 #define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 #ifdef __cplusplus
